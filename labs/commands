@@ -1,0 +1,10 @@
+aws  ec2 describe-instances --filters Name=availability-zone,Values="us-west-2c"
+aws ec2 describe-images --image-ids  ami-c229c0a2
+aws describe-vpcs --output text --query 'Vpcs[*].VpcId'
+aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName'
+aws ec2 describe-subnets --query 'Subnets[*].{SubnetId:SubnetId,AvailabilityZone:AvailabilityZone}'
+touch install.tomcat.txt
+aws ec2 create-security-group --group-name putpat --description "aws cli SecGrp" --vpc-id vpc-b425efd0
+aws ec2 authorize-security-group-ingress --group-name putpat --protocol tcp --port 22 --cidr 199.16.140.30/32
+aws ec2 run-instances --image-id ami-c229c0a2 --count 1 --user-data file://install.tomcat.txt --instance-type t2.micro --key-name putpat_key --security-group-ids sg-df6b49b8 --subnet-id subnet-109a4774
+
