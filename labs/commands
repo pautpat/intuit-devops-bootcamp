@@ -1,6 +1,6 @@
 aws  ec2 describe-instances --filters Name=availability-zone,Values="us-west-2c"
 aws ec2 describe-images --image-ids  ami-c229c0a2
-aws describe-vpcs --output text --query 'Vpcs[*].VpcId'
+aws ec2 describe-vpcs --output text --query 'Vpcs[*].VpcId'
 aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName'
 aws ec2 describe-subnets --query 'Subnets[*].{SubnetId:SubnetId,AvailabilityZone:AvailabilityZone}'
 touch install.tomcat.txt
